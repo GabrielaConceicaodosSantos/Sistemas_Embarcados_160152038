@@ -1,0 +1,54 @@
+GABRIELA CONCEIÇÃO DOS SANTOS - 16/0152038 - 2/2018
+
+
+DATA: 29/08/2018
+
+1. Crie um código em C que escreve a sequência de Fibonacci em arquivo em formato binário. Comece a sequência com os valores 0 e 1, e grave suas primeiras 100 posições em arquivo.
+
+#include<stdio.h>
+int main()
+{
+	  unsigned long int f[100];
+	  int i;
+	  f[0]=0;
+	  f[1]=1;
+	  for(i=2;i<100;i++)
+	  {
+		  f[i] = f[i-1]+f[i-2];
+	  }
+	  FILE *fp;
+	  fp = fopen("fibbonaci.bin","wb");
+	  if(!fp)
+	  {
+		  printf("Erro ao abrir arquivo. Fim do programa.\n");
+	  }
+	  fwrite(f,sizeof(unsigned long int),100,fp);
+	  fclose(fp);
+	  return 0;
+}
+
+
+
+2.Crie um código em C que lê o arquivo da questão anterior e escreve os valores lidos da sequência de Fibonacci na tela.
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	  unsigned long int f[100]={0};
+	  FILE *fp;
+	  if((fp = fopen("fibbonaci.bin","rb")) == NULL)
+	  {
+		  printf("Erro na abertura do arquivo. Fim do programa.");
+		  exit(1);
+	  }
+	  if(fread(f,sizeof(unsigned long int),100,fp) == 1)
+	  {
+		  printf("Erro na leitura do arquivo.");
+	  }
+	  int i;
+	  for(i=0;i<100;i++)
+	  {
+		  printf("O termo %d da sequencia de fibbonaci e' %lu.\n",i,f[i]);
+	  }
+}
