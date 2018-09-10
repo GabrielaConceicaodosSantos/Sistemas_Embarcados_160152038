@@ -1,45 +1,45 @@
 
 
-GABRIELA CONCEI«√O DOS SANTOS - 16/0152038 - 2/2018
+GABRIELA CONCEI√á√ÉO DOS SANTOS - 16/0152038 - 2/2018
 
 DATA: 17/08/2018
 
 1. Por que o Linux recebeu esse nome?
-	- O nome vem direto do seu criador, Linus Torvalds. O nome È uma junÁ„o dos nomes Linus + MINIX. O MINIX foi um sistema operacional 
+	- O nome vem direto do seu criador, Linus Torvalds. O nome √© uma jun√ß√£o dos nomes Linus + MINIX. O MINIX foi um sistema operacional 
 	criado por Andrew Tanenmbaum para ensinar os fundamentos de sistemas operacionais para estudantes. Ficando um pouco frustrado com a pequena 
-	aplicaÁ„o do SO, ele decidiu fazer o seu prÛprio SO baseado no MINIX e assim nasceu o linux.
+	aplica√ß√£o do SO, ele decidiu fazer o seu pr√≥prio SO baseado no MINIX e assim nasceu o linux.
 
-2. O que s„o daemons?
-	- Daemon È um software que fica executando sem o controle direto do usu·rio. Por convenÁ„o, para diferenciar de um processo de um 
-	software normal, o processo dos daemons terminam com a letra "d". Um daemon controle (inicia, reinicia, para e etc) um serviÁo provido pelo
+2. O que s√£o daemons?
+	- Daemon √© um software que fica executando sem o controle direto do usu√°rio. Por conven√ß√£o, para diferenciar de um processo de um 
+	software normal, o processo dos daemons terminam com a letra "d". Um daemon controle (inicia, reinicia, para e etc) um servi√ßo provido pelo
 	sistema.
 
-3. O que È o shell?
-	- O Shell (concha) È um programa que permite ao usu·rio iteragir com o sistema operacional atravÈs de comandos digitados do teclado.
- 	A sua funÁ„o È ler a linha de comando, interpretar o significado, executar o comando e devolver o resultado pelas saÌdas. Existem v·rios
+3. O que √© o shell?
+	- O Shell (concha) √© um programa que permite ao usu√°rio iteragir com o sistema operacional atrav√©s de comandos digitados do teclado.
+ 	A sua fun√ß√£o √© ler a linha de comando, interpretar o significado, executar o comando e devolver o resultado pelas sa√≠das. Existem v√°rios
 	tipos de Shell, sendo os mais comuns o sh (chamado Bourne shell), o bash (Bourne again shell), o csh (C shell), o Tcsh (Tenex C shell),
- 	o ksh (Korn shell) e o zsh (Zero shell). O Shell mais famoso no Linux È o Bash.
+ 	o ksh (Korn shell) e o zsh (Zero shell). O Shell mais famoso no Linux √© o Bash.
 
-4. Por que È importante evitar executar o terminal como super-usu·rio?
-	- Super-usu·rio ou Root (raiz) refere-se a um tipo de usu·rio com privilÈgios absolutos. Com o Root È possÌvel ter controle total sobre
- 	o sistema (executar comandos absolutos e ter acesso a processos), o que pode ser muito interessante e tambÈm muito perigoso. Portanto o mais
- 	recomendado n„o È logar como Root, e sim utilizar comandos como su e sudo. O primeiro loga como Root e outr usu·rio em um terminal, podendo 
-	depois fazer logoff com o comando exit, o segundo apenas executar um comando em um terminal com privilÈgios de super usu·rio.
+4. Por que √© importante evitar executar o terminal como super-usu√°rio?
+	- Super-usu√°rio ou Root (raiz) refere-se a um tipo de usu√°rio com privil√©gios absolutos. Com o Root √© poss√≠vel ter controle total sobre
+ 	o sistema (executar comandos absolutos e ter acesso a processos), o que pode ser muito interessante e tamb√©m muito perigoso. Portanto o mais
+ 	recomendado n√£o √© logar como Root, e sim utilizar comandos como su e sudo. O primeiro loga como Root e outr usu√°rio em um terminal, podendo 
+	depois fazer logoff com o comando exit, o segundo apenas executar um comando em um terminal com privil√©gios de super usu√°rio.
 
-5. Qual bot„o do teclado completa o que o usu·rio escreve no terminal, de acordo com o contexto?
-	- TAB: TAB autocompleta a linha de um texto. Digamos que vocÍ deseja digitar cd ~/Dropbox/, vocÍ pode digitar somente cd ~/Dr e ent„o apertar 
+5. Qual bot√£o do teclado completa o que o usu√°rio escreve no terminal, de acordo com o contexto?
+	- TAB: TAB autocompleta a linha de um texto. Digamos que voc√™ deseja digitar cd ~/Dropbox/, voc√™ pode digitar somente cd ~/Dr e ent√£o apertar 
 	TAB para autocompletar o comando.
 
-6. Quais botıes do teclado apresentam instruÁıes escritas anteriormente?
-	-Seta para cima/Seta para baixo: Com as setas para cima e para baixo pode-se mover pelo ˙ltimos comandos digitados. Basta ficar apertando 
+6. Quais bot√µes do teclado apresentam instru√ß√µes escritas anteriormente?
+	-Seta para cima/Seta para baixo: Com as setas para cima e para baixo pode-se mover pelo √∫ltimos comandos digitados. Basta ficar apertando 
 	seta pra cima/baixo e quando achar o comando digitado, apertar ENTER.
 
 7. Apresente os respectivos comandos no terminal para:
 
-	(a) Obter mais informaÁıes sobre um comando.
-
+	(a) Obter mais informa√ß√µes sobre um comando.
+		```
 			man #nome_do_comando
-
+		```
 
 	(b) Apresentar uma lista com os arquivos dentro de uma pasta.
 
@@ -53,31 +53,31 @@ DATA: 17/08/2018
 
 	(d) Trocar de pasta.
 
-			Ir para o diretÛrio home do usu·rio logado:
+			Ir para o diret√≥rio home do usu√°rio logado:
 
 			$ cd
 
-			Ir para o diretÛrio acima do atual:
+			Ir para o diret√≥rio acima do atual:
 
 			$ cd ..
 
-			Voltar para o diretÛrio que est·vamos antes do atual:
+			Voltar para o diret√≥rio que est√°vamos antes do atual:
 
 			$ cd -
 
-			Mudar para o diretÛrio raiz do sistema:
+			Mudar para o diret√≥rio raiz do sistema:
 
 			$ cd /
 
-			Ir para o diretÛrio home do usu·rio logado:
+			Ir para o diret√≥rio home do usu√°rio logado:
 
 			$ cd ~
 
-			Estando dentro de um diretÛrio, deseja-se entrar em outro pertecente ao diretÛrio atual:
+			Estando dentro de um diret√≥rio, deseja-se entrar em outro pertecente ao diret√≥rio atual:
 
 			$ cd #nome_da_pasta
 
-			Entrando em um diretÛrio que n„o pertence ao diretÛrio atual:
+			Entrando em um diret√≥rio que n√£o pertence ao diret√≥rio atual:
 
 			$ cd #caminho_para_diretorio_que_se_deseja_entrar
 
@@ -88,7 +88,7 @@ DATA: 17/08/2018
 
 	(f) Apagar arquivos definitivamente.
 
-			Arquivo se encontra no diretÛrio atual:
+			Arquivo se encontra no diret√≥rio atual:
 
 			$ rm #nome_do_arquivo
 
@@ -100,7 +100,7 @@ DATA: 17/08/2018
 			
 			$ rm #caminho_para_arquivo
 
-			Apagando arquivos com a mesma extens„o:
+			Apagando arquivos com a mesma extens√£o:
 
 			$ rm *.txt
 
@@ -111,43 +111,43 @@ DATA: 17/08/2018
 			
 			$ rm -rf nomedapasta/
 			
-			Apagar arquivos e pastas do diretÛrio atual:
+			Apagar arquivos e pastas do diret√≥rio atual:
 			
 			$ rm -rf *
 
 
 	(h) Copiar arquivos.
 
-			Copiar arquivo passwd do diretÛrio /etc para o diretÛrio /home/gabriela
+			Copiar arquivo passwd do diret√≥rio /etc para o diret√≥rio /home/gabriela
 		
 			$ cp /etc/passwd /home/gabriela/
 
-			Copiar o arquivo passwd do diretÛrio /etc/ para o diretÛrio /home/gabriela renomeando a cÛpia como usuarios.txt
+			Copiar o arquivo passwd do diret√≥rio /etc/ para o diret√≥rio /home/gabriela renomeando a c√≥pia como usuarios.txt
 
 			$ cp /etc/passwd /home/gabriela/usuarios.txt
 
-			Copiar todos os arquivos cujo nome se inicia com a letra l no diretÛrio /lib/ para o diretÛrio atual:
+			Copiar todos os arquivos cujo nome se inicia com a letra l no diret√≥rio /lib/ para o diret√≥rio atual:
 
 			$ cp /lib/l*.
 
 
 	(i) Copiar pastas.
 
-			Copiar o diretÛrio /home/gabriela/Downloads e todo o seu conte˙do recursivamente para o diretÛrio /home/gabriela/Backup:
+			Copiar o diret√≥rio /home/gabriela/Downloads e todo o seu conte√∫do recursivamente para o diret√≥rio /home/gabriela/Backup:
 			
 			$ cp -r /home/gabriela/Downloads /home/gabriela/Backup
 
 
 	(j) Mover arquivos.
 
-			Mover o arquivo passwd do diretÛrio atual para o subdiretÛrio Documentos:
+			Mover o arquivo passwd do diret√≥rio atual para o subdiret√≥rio Documentos:
 	
 			$ mv passwd ./Documentos/
 
 
 	(k) Mover pastas.
 
-			Mover todo o conte˙do dentro da pasta (arquivos e pastas) de teste1 para teste2.
+			Mover todo o conte√∫do dentro da pasta (arquivos e pastas) de teste1 para teste2.
 
 			$ mv teste1/* /home/gabriela/Documentos
 
@@ -157,7 +157,7 @@ DATA: 17/08/2018
 			$ mv pasta1 pasta2
 
 
-	(m) Apresentar o conte˙do de um arquivo.
+	(m) Apresentar o conte√∫do de um arquivo.
 
 			$ cat #nome_do_arquivo
 
@@ -172,28 +172,28 @@ DATA: 17/08/2018
 			$ clear
 
 
-	(p) Encontrar ocorrÍncias de palavras-chave em um arquivo-texto.
+	(p) Encontrar ocorr√™ncias de palavras-chave em um arquivo-texto.
 
 			$ cat arquivo.txt | grep "String"
 
 
-	(q) Ordenar informaÁıes em um arquivo-texto.
+	(q) Ordenar informa√ß√µes em um arquivo-texto.
 
 			$ sort [opcoes][arquivo]
 
  
-	(r) Substituir ocorrÍncias de palavras-chave em um arquivo-texto.
+	(r) Substituir ocorr√™ncias de palavras-chave em um arquivo-texto.
 
 			O comando sed:
 			$ sed 's/palavra_p_substituir/palavra_nova/'
 
 
-	(s) Conferir se dois arquivos s„o iguais.
+	(s) Conferir se dois arquivos s√£o iguais.
 
 			$ diff arquivo1.txt arquivo2.txt
 
 
 	(t) Escrever algo na tela
 
-			$ echo 'O que vocÍ quiser escrever.'
+			$ echo 'O que voc√™ quiser escrever.'
 
