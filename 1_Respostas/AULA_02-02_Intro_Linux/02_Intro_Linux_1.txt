@@ -37,8 +37,8 @@ DATA: 17/08/2018
 7. Apresente os respectivos comandos no terminal para:
 
 	(a) Obter mais informações sobre um comando.
-		```	man #nome_do_comando
-		```
+			man #nome_do_comando
+		
 
 	(b) Apresentar uma lista com os arquivos dentro de uma pasta.
 
