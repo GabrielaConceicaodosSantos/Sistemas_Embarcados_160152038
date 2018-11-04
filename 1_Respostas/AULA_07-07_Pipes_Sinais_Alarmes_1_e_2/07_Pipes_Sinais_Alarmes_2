@@ -1,0 +1,393 @@
+GABRIELA CONCEIÇÃO DOS SANTOS. - 16/0152038 - 2/1028
+
+1. Crie um programa em C que cria um processo-filho e um pipe de comunicação. Faça com que o processo-pai envie os valores 1, 2, 3, 4, 5, 6, 7, 8, 9 e 10 para o processo-filho, com intervalos de 1 segundo entre cada envio. Depois de o processo-pai enviar o número 10, ele aguarda 1 segundo e termina a execução. O processo-filho escreve na tela cada valor recebido, e quando ele receber o valor 10, ele termina a execução.
+O código está no arquivo 1_com_paiefilho.c
+
+RESPOSTA:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv){
+
+	int fd[2];
+	pipe(fd);
+	int i;
+	
+	if(fork()!=0){
+
+	//Processo pai
+
+	for(i = 1; i <= 10 ; i++){
+		write(fd[1], &i, sizeof(int));
+		sleep(1);
+	}
+
+	} else {
+	//Processo filho
+
+	int j;
+
+	sleep(11); //Esperar o pai terminar de mandar os dados
+
+	for(i = 0; i < 10 ; i++){
+		read(fd[0], &j, sizeof(int));
+		printf("%d, ",j);
+	}
+	puts("\n");
+	}
+	
+	close(fd[0]);
+	close(fd[1]);
+	return 0;
+}
+
+
+2. Crie um programa em C que cria um processo-filho e um pipe de comunicação. Utilize o pipe para executar a seguinte conversa entre processos:
+FILHO: Pai, qual é a verdadeira essência da sabedoria?
+PAI: Não façais nada violento, praticai somente aquilo que é justo e equilibrado.
+FILHO: Mas até uma criança de três anos sabe disso!
+PAI: Sim, mas é uma coisa difícil de ser praticada até mesmo por um velho como eu...
+RESPOSTA:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+
+char* readfrase(int fd){
+	int cont=0;
+	int erro;
+	char a=' ';
+	char* str;
+
+	str = (char* )malloc(sizeof(char)+1);
+
+	while(erro !=-1 && a !='\0'){
+		//printf("Leu arquivo?\n");
+		erro = read(fd, &a, sizeof(char));
+		str = (char* )realloc(str,sizeof(char)+cont);
+		if (erro == 1){
+			str[cont] = a;
+			str[cont+1] = '\0';
+			cont++;
+		}
+	//printf("%d - e%d: Leitura com sucesso: string - %s - tamanho: %d\n", cont, erro, str, strlen(str));
+	//if(a == '\0')
+		//puts("ACHOU O BARRA O :o");
+	}
+
+	//str = (char* )malloc((cont+1)*sizeof(char));
+	str[cont] = '\0';
+	//printf("Saida: %s\n", str);
+	//puts("Fim de leitura");
+	return str;
+	puts("Não conseguiu retornar");
+	
+}
+
+int main(int argc, char** argv){
+
+	int const n = 4;
+
+	int fd[2];
+	pipe(fd);
+	int i,j;
+	int tamConversa;
+	int tamMensagem[n];
+	
+	if(fork()!=0){
+
+	//Processo pai
+
+	char* fala_pai[2] = {"Não façais nada violento, praticai somente aquilo que é justo e equilibrado.","Sim, mas é uma coisa difícil de ser praticada até mesmo por um velho como eu..."};
+	char* mens_filho[n];
+	int tam=0; //apagar
+
+	for(i = 0; i < n ; i++){
+		printf("	PAI: i = %d;\n", i);
+		//lseek(fd[0],0,SEEK_SET);
+		//tamMensagem[i] = 0;
+		/*if(i == 1){
+			//tamMensagem[i-1] = lseekf(fd[0],0,SEEK_END);
+			//printf("tamanho : %d\n", tamMensagem[i-1]);
+			//mens_filho[i-1] = (char*)malloc(tamMensagem[i-1] + 1);
+			//read(fd[0], &mens_filho[i-1], tamMensagem[i-1]); //Escuta do filho
+			mens_filho[i-1] = readfrase(fd[0]); //Escuta do filho
+			//mens_filho[i-1] = (char*)malloc(100 + 1);
+			//read(fd[0], &*mens_filho[i-1], 100);
+			//mens_filho[i-1][20] = '\0';	
+			//mens_filho[i-1][tam] = '\0';
+			//printf("Leu! :)\n");
+			printf("PAI ESCULTA O FILHO: %s\n", mens_filho[i-1]);
+			write(fd[1], &*fala_pai[0], strlen(fala_pai[0])+1); // Fala para o filho
+			printf("PAI FALA PARA O FILHO: %s\n", fala_pai[(int)(i-1)/2]);
+		}else */if ( i%2 != 0) {
+
+			//tamConversa = lseek(fd[0],0,SEEK_END);
+			/*for( j = 0; j < (i+1)/2; j++){
+				tamMensagem[i-1] = tamConversa - tamMensagem[2*j] - sizeof(fala_pai[j]);
+			}*/
+
+			mens_filho[i-1]=readfrase(fd[0]); // Leu mensagem do filho
+			printf("PAI ESCULTA O FILHO: %s\n", mens_filho[i-1]);
+
+			write(fd[1], &*fala_pai[(i-1)/2], strlen(fala_pai[(i-1)/2])+1); // Fala para o filho
+			printf("PAI FALA PARA O FILHO: %s\n", fala_pai[(int)(i-1)/2]);
+		}
+		sleep(1);
+	}
+
+	} else {
+	//Processo filho
+
+	char* fala_filho[2] = {"Pai, qual é a verdadeira essência da sabedoria?","Mas até uma criança de três anos sabe disso!"};
+	char* mens_pai[n];
+	////char* teste_apagar;
+
+
+	for(i = 0; i <= n ; i++){
+		printf("	FILHO: i = %d;\n", i);
+		//lseek(fd[0],0,SEEK_SET);
+		tamMensagem[i] = 0;
+		if(i == 0){
+			//tamMensagem[i-1] = lseek(fp[0],0,SEEK_END);
+			//read(fd[0], &mens_pai[i-1], tamMensagem);
+			//printf("size of: %d e %d\n",strlen(fala_filho[0]), sizeof(char));
+			write(fd[1], &*fala_filho[0], strlen(fala_filho[0])+1); // Fala para o pai
+			printf("FILHO FALA PARA O PAI: %s\n", fala_filho[(int)(i)/2]);
+		}else if ( i%2 == 0) {
+
+			//tamConversa = lseek(fd[0],0,SEEK_END);
+			/*for( j = 0; j < (i)/2; j++){
+				if(i = 2){
+					tamMensagem[i-1] = tamConversa - sizeof(fala_filho[j]);
+				}else{
+					tamMensagem[i-1] = tamConversa - tamMensagem[2*j-1] - sizeof(fala_filho[j]);
+				}
+			}*/
+
+			//if( i != 0 ){
+				//puts("Vai ler");
+				mens_pai[i-1]=readfrase(fd[0]); // Leu mensagem do pai
+				//teste_apagar=(char*)readfrase(fd[0]);
+				//puts("retornou");
+				printf("FILHO ESCULTA O PAI: %s\n", mens_pai[i-1]);
+				//printf("FILHO ESCULTA O PAI: %s\n",teste_apagar);
+			//}
+
+			if( i != n){
+				write(fd[1], &*fala_filho[(i)/2], strlen(fala_filho[(i)/2])+1); // Fala para o pai
+				printf("FILHO FALA PARA O PAI: %s\n", fala_filho[(int)(i)/2]);
+			}
+		}
+		sleep(1);
+	}
+	}
+	
+	//close(fd[0]);
+	//close(fd[1]);
+	return 0;
+}
+Neste exercício, quem recebe a mensagem via pipe é quem as escreve no terminal.
+
+
+3. Crie um programa em C que cria dois processos-filhos e um pipe de comunicação. Utilize o pipe para executar a seguinte conversa entre processos:
+FILHO1: Quando o vento passa, é a bandeira que se move.
+FILHO2: Não, é o vento que se move.
+PAI: Os dois se enganam. É a mente dos senhores que se move.
+Neste exercício, quem recebe a mensagem via pipe é quem as escreve no terminal.
+
+RESPOSTA:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+
+char* readfrase(int fd){
+	int cont=0;
+	int erro;
+	char a=' ';
+	char* str;
+
+	str = (char* )malloc(sizeof(char)+1);
+
+	while(erro !=-1 && a !='\0'){
+		erro = read(fd, &a, sizeof(char));
+		str = (char* )realloc(str,sizeof(char)+cont);
+		if (erro == 1){
+			str[cont] = a;
+			str[cont+1] = '\0';
+			cont++;
+		}
+	}
+
+	str[cont] = '\0';
+	return str;
+}
+
+int main(int argc, char** argv){
+
+	int fd[2];
+	pipe(fd);
+	
+	if(fork()!=0){
+	
+		if(fork()!=0){
+
+		//Processo pai
+
+			char* fala_pai = {"Os dois se enganam. É a mente dos senhores que se move."};
+			char* mens_filho[2];
+
+			sleep(1);
+			mens_filho[0]=readfrase(fd[0]); // Leu mensagem do filho 1
+
+			sleep(1);
+			mens_filho[1]=readfrase(fd[0]); // Leu mensagem do filho 2
+
+			printf("PAI ESCULTA O FILHO 1: %s\n", mens_filho[0]);
+			printf("PAI ESCULTA O FILHO 2: %s\n", mens_filho[1]);
+
+			write(fd[1], &*fala_pai, strlen(fala_pai)+1); // Fala para o filho
+			printf("PAI FALA PARA OS FILHOS: %s\n", fala_pai);
+			sleep(1);
+
+		}else{
+		//Processo filho 2
+
+			char* fala_filho = {"Não, é o vento que se move."};
+			char* mens_pai;
+
+			sleep(1);
+
+			write(fd[1], &*fala_filho, strlen(fala_filho)+1); // Fala para o pai
+			printf("FILHO 2 FALA PARA O PAI: %s\n", fala_filho);
+			sleep(1);
+
+			sleep(1);
+		}
+
+	} else {
+	//Processo filho 1
+
+		char* fala_filho = {"Quando o vento passa, é a bandeira que se move."};
+		char* mens_pai;
+
+		write(fd[1], &*fala_filho, strlen(fala_filho)+1); // Fala para o pai
+		printf("FILHO 1 FALA PARA O PAI: %s\n", fala_filho);
+		sleep(1);
+
+		sleep(1);
+
+		sleep(1);
+		mens_pai=readfrase(fd[0]); // Leu mensagem do pai
+		printf("FILHO 1 ESCULTA O PAI: %s\n", mens_pai);
+	}
+	
+	return 0;
+}
+
+
+4. Crie um programa em C que cria um processo-filho e um pipe de comunicação. O processo-filho deverá pedir o nome do usuário, envia-lo para o pai via pipe, e o pai deverá escrever o nome do usuário no terminal.
+RESPOSTA:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+
+char* readfrase(int fd){
+	int cont=0;
+	int erro;
+	char a=' ';
+	char* str;
+
+	str = (char* )malloc(sizeof(char)+1);
+
+	while(erro !=-1 && a !='\0'){
+		//printf("Leu arquivo?\n");
+		erro = read(fd, &a, sizeof(char));
+		str = (char* )realloc(str,sizeof(char)+cont);
+		if (erro == 1){
+			str[cont] = a;
+			str[cont+1] = '\0';
+			cont++;
+		}
+	//printf("%d - e%d: Leitura com sucesso: string - %s - tamanho: %d\n", cont, erro, str, strlen(str));
+	//if(a == '\0')
+		//puts("ACHOU O BARRA O :o");
+	}
+
+	//str = (char* )malloc((cont+1)*sizeof(char));
+	str[cont] = '\0';
+	//printf("Saida: %s\n", str);
+	//puts("Fim de leitura");
+	return str;
+	puts("Não conseguiu retornar");
+	
+}
+
+int main(int argc, char** argv){
+
+	int fd[2];
+	pipe(fd);
+
+	char* nome_usuario;
+	
+	if(fork()!=0){
+	//Processo pai
+
+		puts("PAI: Bom dia! Vou escutar meu filho... ");
+		nome_usuario = readfrase(fd[0]); 
+		puts("PAI: Pronto!");
+		printf("PAI: Seu nome é %s, certo?! Tchau.\n", nome_usuario);
+
+	} else {
+	//Processo filho
+
+		puts("FILHO: Eu sou o filho.Qual o seu nome para que eu possa dizer para o meu pai? ");
+		nome_usuario = (char *) malloc(128);
+		scanf("%s", &*nome_usuario);
+		printf("FILHO: Vou falar para ele... ");
+		write(fd[1], &*nome_usuario, strlen(nome_usuario)+1);
+		puts("Pronto! Tchou.");
+
+	}
+	
+	return 0;
+}
+
+
+5. Utilize o sinal de alarme para chamar a cada segundo o comando ps ordenando todos os processos de acordo com o uso da CPU. Ou seja, seu código atualizará a lista de processos a cada segundo. Além disso, o código deverá tratar o sinal do CTRL-C, escrevendo "Processo terminado!" na tela antes de terminar a execução do processo.
+RESPOSTA:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <signal.h>
+
+void funcao_para_control_c()
+{
+	puts("\nProcesso Terminado!");
+	exit(1);
+}
+
+int main(int argc, char** argv){
+
+	signal(SIGINT, funcao_para_control_c);
+	while(1){
+		system("clear");
+		system("ps --sort=pcpu");
+		sleep(1);
+	}
+
+	return 0;
+}
