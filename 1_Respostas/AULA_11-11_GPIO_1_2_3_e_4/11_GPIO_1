@@ -1,0 +1,32 @@
+
+
+                            GABRIELA CONCEIÇÃO DOS SANTOS. - 16/0152038 - 2/2018
+
+
+1. Apresente 5 sistemas operacionais suportados pelo Raspberry Pi, e algumas de suas características.
+  RESPOSTA:
+    Raspbian: Sistema para quem não está muito acostumado em trabalhar com o raspberryPi sendo possivel adicionar varios programas.
+    Ubuntu: Versão mais utilizada do linux, sendo um pouco pessada para o RaspberryPi.
+    OSMC: Torna o RaspberryPi um media center completo.
+    Recalbox: Torna o RaspberryPi um emulador de consoles antigos.
+    Pidora: Versão para o RaspberryPi do Fedora.
+    
+    
+2. Apresente as formas de instalação de sistemas operacionais para o Raspberry Pi.
+  REPOSTA:
+    Através da formatação adeguade de um micro SD de no minimo 8Gb.Após isso a instalar um dos sistemas apresentado no proprio site da RaspberryPi
+  
+  
+3. Apresente 3 formas de desenvolvimento de software para o Raspberry Pi.
+  REPOSTA: 
+    C/C++, Ruby, Perl, Python, Scratch, Java. Shell script, Lazarus e/ou Basic.
+
+
+4. Apresente 3 formas de acesso remoto ao Raspberry Pi.
+  REPOSTA:
+    RDP, SSH, VNC.
+
+
+5. Apresente as formas possíveis de compilação de código em C para o Raspberry Pi.
+  RESPOSTA:
+    Códigos em python podem ser compilados atraves do terminal com o comando adequado, ou atraves de softwares instalados no sistema operacional.
