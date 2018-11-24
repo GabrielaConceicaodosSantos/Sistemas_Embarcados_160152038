@@ -53,6 +53,8 @@
 (e) Os endereços usados por clientes na função connect() se referem a qual camada?
   RESPOSTA:
   À camada de Transporte.
+  
+  
 4. Qual é a diferença entre os métodos GET e POST no protocolo HTTP?
   RESPOSTA:
     GET: Faz requisição de uma página HTTP do endereço. 
