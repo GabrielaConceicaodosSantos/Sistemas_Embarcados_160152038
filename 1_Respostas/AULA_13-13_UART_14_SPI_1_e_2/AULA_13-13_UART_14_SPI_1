@@ -1,0 +1,43 @@
+
+                                    GABRIELA C. DOS SANTOS -16/0152038
+
+
+1.Cite as vantagens e desvantagens das comunicação serial:
+(a) Assíncrona (UART).
+
+  Não faz uso de clock, logo, qualquer um dos dois módulos pode ler e escrever no arquivo quando for conveniente. A comunicação UART é lenta.
+A desvantagem é que deve-se conhecer a frequência de envio de dados dos dois dispositivos e pode haver falta de sincronismo na comunicação 
+entre os módulos e erro no funcionamento do sistema. Só faz uso de 2 pinos, porém, não aceita a comunicação com vários dispositivos 
+simultaneamente.
+
+(b) SPI.
+
+  SPI é um protocolo de comunicação para controle e comunicação para controle e comunicação com quase qualquer dispositivo que utiliza de 
+stream de bits controlado por clock. Utiliza a arquitetura mestre-escravo e pode comunicar full-duplex, ou seja, pode ler e escrever no 
+arquivo de transmissão ao mesmo tempo. SPI requer pelo menos 4 pinos para comunicação com pelo menos 1 dispositivo e requer mais fios para
+adicionais dispositivos. SPI é bem rápido quando comparado com UART. Entretanto, permite a comunicação de vários dispositivos escravos com 
+o mestre.
+
+
+2. Considere o caso em que a Raspberry Pi deve receber leituras analógico/digitais de um MSP430, e que a comunicação entre os dois é UART.
+É tecnicamente possível que o MSP430 mande os resultados da conversão A/D a qualquer hora, ou ele deve aguardar a Raspberry Pi fazer um 
+pedido ao MSP430? Por quê?
+    RESPOSTA: É possível, pois como a comunicação UART não requer clock, não existe a configuração mestre-escravo e assim, qualquer um 
+    dos dois disposivitos pode realizar o envio de dados quando lhe for conveniente.
+
+
+3. Considere o caso em que a Raspberry Pi deve receber leituras analógico/digitais de um MSP430, que a comunicação entre os dois seja SPI, 
+e que o MSP430 seja o escravo. É tecnicamente possível que o MSP430 mande os resultados da conversão A/D a qualquer hora, ou ele deve 
+aguardar a Raspberry Pi fazer um pedido ao MSP430? Por quê?
+  RESPOSTA: Não é possível, pois como existe a configuração mestre-escravo, a MSP430, estando como escravo, só pode realizar o envio de 
+  dados uma vez que a Raspberry Pi faça a requisição.
+
+
+4. Se o Raspberry Pi tiver de se comunicar com dois dispositivos via UART, como executar a comunicação com o segundo dispositivo?
+  RESPOSTA: Não é possível com o mesmo hardware de UART. Para isso, se faz necessário de utilizar outros métodos.
+
+
+5. Se o Raspberry Pi tiver de se comunicar com dois dispositivos via SPI, como executar a comunicação com o segundo dispositivo?
+  RESPOSTA: Vimos na questão 1 que a comunicação SPI requer o uso de pelo menos 4 fios. Estes fios são: SCK - Sistem Clock, MOSI - Master Out Slave In,
+  MISO - Master In Slave Out e SS - Slave Select. Fazendo o uso do último fio, SS, é possível selecionar o slave desejado em uma configuração
+  de vários slaves.
