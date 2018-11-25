@@ -1,0 +1,25 @@
+
+                                                GABRIELA C. DOS SANTOS - 16/0152038 - 2.2018
+
+
+1. Cite as vantagens e desvantagens das comunicação serial I2C.
+
+	RESPOSTA:
+    Utiliza apenas dois fios para comunicação, um de clock e outro de dados bidirecional, todos os escravos são conectados aos 
+    mesmos fios, não havendo a necessidade do uso de mais pinos, pelo uso de apenas um pino de comunicação de dados, essa comunicação
+    se dá de forma mais lenta, sempre esperando um dispositivo terminar a comunicação para o outro começa-la.
+
+
+2. Considere o caso em que a Raspberry Pi deve receber leituras analógico/digitais de um MSP430, e que a comunicação entre os dois é I2C.
+É tecnicamente possível que o MSP430 mande os resultados da conversão A/D a qualquer hora, ou ele deve aguardar a Raspberry Pi fazer um 
+pedido ao MSP430? Por quê?
+	
+	RESPOSTA: 
+    Deve aguardar um pedido do raspberry-pi (master), a comunicação I2C também trabalha com o modelo mestre/escravo.
+
+3. Se o Raspberry Pi tiver de se comunicar com dois dispositivos via I2C, como executar a comunicação com o segundo dispositivo?
+
+  RESPOSTA:
+	  Na comunicação serial síncrona I2C há um endereçamento de dispositivos (escravos) onde 7 bits da comunicação são designados para 
+  a identificação de cada escravo, dando a possibilidade de comunicação com até 127 dispositivos escravos (teoricamente) com apenas
+  dois fios.
