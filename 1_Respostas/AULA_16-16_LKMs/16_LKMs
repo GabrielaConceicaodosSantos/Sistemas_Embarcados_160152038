@@ -1,0 +1,12 @@
+1. Faça um módulo do kernel do Linux cujo MODULE_DESCRIPTION é fornecido pelo usuário que carrega o módulo. Confira o resultado do carregamento do módulo com o comando dmesg.
+(Dica: use uma string como module_param de entrada.)
+
+#include <linux/module.h>
+#include <linux/kernel.h>
+#include <asm/io.h>
+
+	static const int port=0x378;
+	static char data=0;
+	
+		module_param(data,byte,0);
+		MODULE_PARM_DESC(data,"Dado a ser escrito na porta 0x378 na carga do modulo");
